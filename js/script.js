@@ -15,6 +15,9 @@ const wrapper = document.querySelector(".wrapper"),
 let musicIndex = Math.floor((Math.random() * allMusic.length) + 1);
 isMusicPaused = true;
 
+// Add these variables at the top of the file
+let audioContext, analyser, dataArray, canvas, ctx;
+
 window.addEventListener("load", () => {
     loadMusic(musicIndex);
     playingSong();
@@ -27,12 +30,77 @@ function loadMusic(indexNumb) {
     mainAudio.src = `songs/${allMusic[indexNumb - 1].src}.mp3`;
 }
 
+// Add this function
+function setupVisualizer() {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioContext.createAnalyser();
+    const source = audioContext.createMediaElementSource(mainAudio);
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    analyser.fftSize = 1024;
+    const bufferLength = analyser.frequencyBinCount;
+    dataArray = new Uint8Array(bufferLength);
+
+    canvas = document.getElementById('visualizer');
+    ctx = canvas.getContext('2d');
+    canvas.width = wrapper.clientWidth;
+    canvas.height = 150; // Increased height for better visibility
+
+    function animate() {
+        requestAnimationFrame(animate);
+        analyser.getByteTimeDomainData(dataArray);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.beginPath();
+
+        const sliceWidth = canvas.width * 1.0 / bufferLength;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+            const v = dataArray[i] / 128.0;
+            const y = v * canvas.height / 2;
+
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+
+            x += sliceWidth;
+        }
+
+        ctx.lineTo(canvas.width, canvas.height / 2);
+        ctx.stroke();
+
+        // Add a dynamic gradient fill
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+        const time = Date.now() * 0.001;
+        gradient.addColorStop(0, `hsl(${Math.sin(time) * 360}, 100%, 50%)`);
+        gradient.addColorStop(0.5, `hsl(${Math.cos(time) * 360}, 100%, 50%)`);
+        gradient.addColorStop(1, `hsl(${Math.tan(time) * 360}, 100%, 50%)`);
+        
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
+        // Add glow effect
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
+    }
+
+    animate();
+}
 
 function playMusic() {
     wrapper.classList.add("paused");
     playPauseBtn.querySelector("i").innerText = "pause";
     mainAudio.play();
     musicImg.parentElement.classList.add("rotate"); // Thêm class rotate khi phát nhạc
+    
+    // Add this line
+    if (!audioContext) setupVisualizer();
 }
 
 
@@ -396,3 +464,43 @@ function stopp() {
         startSakura();
     }
 }
+
+const volumeSlider = document.getElementById('volume-slider');
+const volumeIcon = document.getElementById('volume-icon');
+
+volumeSlider.addEventListener('input', () => {
+  const volume = volumeSlider.value / 100;
+  mainAudio.volume = volume;
+  updateVolumeIcon(volume);
+});
+
+volumeIcon.addEventListener('click', () => {
+  if (mainAudio.volume > 0) {
+    mainAudio.volume = 0;
+    volumeSlider.value = 0;
+  } else {
+    mainAudio.volume = 1;
+    volumeSlider.value = 100;
+  }
+  updateVolumeIcon(mainAudio.volume);
+});
+
+function updateVolumeIcon(volume) {
+  if (volume > 0.5) {
+    volumeIcon.className = 'fas fa-volume-up';
+  } else if (volume > 0 && volume <= 0.5) {
+    volumeIcon.className = 'fas fa-volume-down';
+  } else {
+    volumeIcon.className = 'fas fa-volume-mute';
+  }
+}
+
+// Khởi tạo âm lượng ban đầu
+updateVolumeIcon(mainAudio.volume);
+
+// Add this to handle window resize
+window.addEventListener('resize', () => {
+    if (canvas) {
+        canvas.width = wrapper.clientWidth;
+    }
+});
