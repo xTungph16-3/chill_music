@@ -39,6 +39,18 @@ let allMusic = [{
         artist:"Trịnh Xuân Tùng      ",
         img:"music-7",
         src:"music-7"
+    },
+    {
+        name:  "Ngày đầu sau chia tay",
+        artist:"Trịnh Xuân Tùng      ",
+        img:"music-8",
+        src:"music-8"
+    },
+    {
+        name:  "Còn lại gì sau chia tay",
+        artist:"Trịnh Xuân Tùng      ",
+        img:"music-9",
+        src:"music-9"
     }
 
 //     name:  "Trời Giấu Trời Mang Đi",
