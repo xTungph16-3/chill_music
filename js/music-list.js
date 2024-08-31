@@ -27,6 +27,12 @@ let allMusic = [{
         artist:"Trịnh Xuân Tùng      ",
         img:"music-5",
         src:"music-5"
+    },
+    {
+        name:  "Vừa hận vừa yêu",
+        artist:"Trịnh Xuân Tùng      ",
+        img:"music-6",
+        src:"music-6"
     }
 
 //     name:  "Trời Giấu Trời Mang Đi",
