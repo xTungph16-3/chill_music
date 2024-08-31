@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ - Trịnh Xuân Tùng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        .bg {
+            background-image: url('./images/winter-background.jpg');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            border: 3px solid #fff;
+        }
+        h1 {
+            margin: 10px 0;
+            color: #000000; /* Thay đổi màu chữ thành đen */
+            font-size: 24px;
+            font-weight: bold; /* Thêm độ đậm cho chữ */
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Thêm bóng đổ để tăng độ nổi bật trên nền */
+        }
+        .email-icon {
+            color: #1a237e;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #fff;
+            color: #333;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .social-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .social-links img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .snow {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+        }
+        @keyframes snowfall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        .action-buttons {
+            position: absolute;
+            top: 20px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 20px;
+        }
+        .action-buttons button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .social-links a i {
+            font-size: 24px;
+            margin-right: 10px;
+            width: 24px;
+            text-align: center;
+        }
+        #subscribeModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px); /* Thêm dòng này để hỗ trợ Safari */
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+        }
+        .modal-profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .modal-content h2 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+        .modal-content p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        #subscribeForm {
+            display: flex;
+            flex-direction: column;
+        }
+        #emailInput {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #subscribeForm button {
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg" id="snow-container">
+        <div class="action-buttons">
+            <button onclick="window.location.href='index.html'">Quay lại</button>
+            <button id="subscribeBtn">✉️ Subscribe </button>
+        </div>
+        <div class="content">
+            <img src="./images/profile-image.jpg" alt="Trịnh Xuân Tùng" class="profile-img">
+            <h1>𝑻𝒓𝒊𝒏𝒉 𝑿𝒖𝒂𝒏 𝑻𝒖𝒏𝓰</h1>
+            <div class="email-icon" onclick="sendEmail()">✉️</div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/_xtung16.3_" target="_blank" rel="noopener">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://github.com/yourusername" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i> Github
+                </a>
+                <a href="https://www.tiktok.com/@tunghocfpt" target="_blank" rel="noopener">
+                    <i class="fab fa-tiktok"></i> TikTok
+                </a>
+                <a href="https://www.facebook.com/Tungcode.163?mibextid=LQQJ4d" target="_blank" rel="noopener">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+                <a href="https://zalo.me/0566858894" target="_blank" rel="noopener">
+                    <i class="fas fa-comment"></i> Zalo Cá nhân
+                </a>
+                <a href="index.html">
+                    <i class="fas fa-music"></i> Music Player
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="subscribeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="./images/profile-image.jpg" alt="Trịnh Xuân Tùng" class="modal-profile-img">
+            <h2>Trịnh Xuân Tùng</h2>
+            <p>Receive the latest updates from Trịnh Xuân Tùng straight to your email inbox.</p>
+            <form id="subscribeForm">
+                <input type="email" id="emailInput" placeholder="you@email.com" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Thêm phần tử audio với file noel.mp3 -->
+    <audio id="background-music" loop>
+        <source src="./songs/noel.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>    
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snow');
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.width = snowflake.style.height = Math.random() * 10 + 5 + 'px';
+            
+            snowflake.style.animation = `snowfall ${Math.random() * 3 + 2}s linear infinite`;
+            
+            document.getElementById('snow-container').appendChild(snowflake);
+            
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 50);
+
+        // Script để phát nhạc
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('background-music');
+            audio.volume = 0.5; // Đặt âm lượng (0.0 đến 1.0)
+            
+            if (localStorage.getItem('playBackgroundMusic') === 'true') {
+                audio.play().catch(function(error) {
+                    console.log("Autoplay was prevented. Please interact with the page to play the music.");
+                });
+                localStorage.removeItem('playBackgroundMusic');
+            }
+
+            // Thêm nút để bật/tắt nhạc
+            var musicToggle = document.createElement('button');
+            musicToggle.innerHTML = '🎵';
+            musicToggle.style.position = 'fixed';
+            musicToggle.style.bottom = '20px';
+            musicToggle.style.left = '20px';
+            musicToggle.style.fontSize = '24px';
+            musicToggle.style.background = 'rgba(255, 255, 255, 0.2)';
+            musicToggle.style.border = 'none';
+            musicToggle.style.borderRadius = '50%';
+            musicToggle.style.width = '40px';
+            musicToggle.style.height = '40px';
+            musicToggle.style.cursor = 'pointer';
+
+            musicToggle.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play();
+                    musicToggle.innerHTML = '🎵';
+                } else {
+                    audio.pause();
+                    musicToggle.innerHTML = '🔇';
+                }
+            });
+
+            document.body.appendChild(musicToggle);
+        });
+
+        function sendEmail() {
+            window.location.href = "mailto:your.email@example.com";
+        }
+
+        var modal = document.getElementById("subscribeModal");
+        var btn = document.getElementById("subscribeBtn");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.getElementById("subscribeForm").onsubmit = function(e) {
+            e.preventDefault();
+            var email = document.getElementById("emailInput").value;
+            
+            // Thêm hiệu ứng loading
+            var submitButton = this.querySelector('button');
+            submitButton.innerHTML = 'Đang xử lý...';
+            submitButton.disabled = true;
+
+            // Giả lập gửi dữ liệu (thay thế bằng API thực tế của bạn)
+            setTimeout(function() {
+                alert("Cảm ơn bạn đã đăng ký! Email: " + email);
+                modal.style.display = "none";
+                submitButton.innerHTML = 'Đăng ký';
+                submitButton.disabled = false;
+                document.getElementById("emailInput").value = '';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
