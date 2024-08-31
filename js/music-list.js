@@ -197,21 +197,9 @@ let allMusic = [{
     src:"music-33"
 },
 {
-    name:  "Cảm ơn vì đã yêu",
+    name:  "Ngày đẹp trời nói lời chia tay",
     artist:"Trịnh Xuân Tùng      ",
     img:"music-34",
     src:"music-34"
-},
-{
-    name:  "Cạn tình như thế",
-    artist:"Trịnh Xuân Tùng      ",
-    img:"music-35",
-    src:"music-35"
-},
-{
-    name:  "Ngày đẹp trời nói lời chia tay",
-    artist:"Trịnh Xuân Tùng      ",
-    img:"music-36",
-    src:"music-36"
 }
 ];
