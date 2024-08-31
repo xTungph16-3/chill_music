@@ -62,6 +62,17 @@ body {
     border-radius: 15px;
     background: var(--wrapper-bg);
     box-shadow: 0px 6px 15px var(--lightbshadow);
+    animation: colorfulBorder 5s linear infinite;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes colorfulBorder {
+    0% { border-color: var(--pink); box-shadow: 0 0 10px var(--pink); }
+    20% { border-color: #ff9900; box-shadow: 0 0 10px #ff9900; }
+    40% { border-color: #33cc33; box-shadow: 0 0 10px #33cc33; }
+    60% { border-color: #3399ff; box-shadow: 0 0 10px #3399ff; }
+    80% { border-color: #9933ff; box-shadow: 0 0 10px #9933ff; }
+    100% { border-color: var(--pink); box-shadow: 0 0 10px var(--pink); }
 }
 
 .wrapper i {
@@ -268,8 +279,7 @@ body {
 }
 
 
-/* Này mình CSS sẵn henn, do lát có thêm Js thì các bạn mới thấy rõ đc phần này :D 
-Này là cái nút mà bấm vô sẽ hiện list nhạc í  */
+/* Này mình CSS sẵn henn, do lát có thêm Js thì các bạn mới thấy rõ đc phần này í  */
 
 .music-list.show {
     bottom: 0;
