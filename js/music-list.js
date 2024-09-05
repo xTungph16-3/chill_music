@@ -1,63 +1,82 @@
 let allMusic = [{
         name:  "Ngày đẹp trời nói lời chia tay",
-        artist:"Trịnh Xuân Tùng      ",
+        artist: "Tùng M-P3",
         img:"music-1",
         src:"music-1"
     },
     {
         name:  "Bước nhẹ vào tim anh",
-        artist:"Trịnh Xuân Tùng      ",
+        artist: "Tùng M-P3",
         img:"music-2",
         src:"music-2"
     },
     {
         name:  "Cảm ơn vì đã yêu",
-        artist:"Trịnh Xuân Tùng      ",
+        artist: "Tùng M-P3",
         img:"music-3",
         src:"music-3"
     },
     {
         name:  "Cạn tình như thế",
-        artist:"Trịnh Xuân Tùng      ",
+        artist: "Tùng M-P3",
         img:"music-4",
         src:"music-4"
     },
     {
         name:  "Từng là",
-        artist:"Trịnh Xuân Tùng      ",
+        artist: "Tùng M-P3",
         img:"music-5",
         src:"music-5"
     },
     {
         name:  "Vừa hận vừa yêu",
-        artist:"Trịnh Xuân Tùng      ",
+        artist: "Tùng M-P3",
         img:"music-6",
         src:"music-6"
     },
     {
         name:  "Anh thôi nhân nhượng",
-        artist:"Trịnh Xuân Tùng      ",
+        artist: "Tùng M-P3",
         img:"music-7",
         src:"music-7"
     },
     {
         name:  "Ngày đầu sau chia tay",
-        artist:"Trịnh Xuân Tùng      ",
+        artist: "Tùng M-P3",
         img:"music-8",
         src:"music-8"
     },
     {
         name:  "Còn lại gì sau chia tay",
-        artist:"Trịnh Xuân Tùng      ",
+        artist: "Tùng M-P3",
         img:"music-9",
         src:"music-9"
     },
     {
         name:  "Yêu là đây",
-        artist:"Trịnh Xuân Tùng      ",
+        artist: "Tùng M-P3",
         img:"music-10",
         src:"music-10"
+    },
+    {
+        name:  "Nếu ví anh như",
+        artist: "Tùng M-P3",
+        img:"music-11",
+        src:"music-11"
+    },
+    {
+        name:  "Lao tâm khổ tứ",
+        artist: "Tùng M-P3",
+        img:"music-12",
+        src:"music-12"
+    },
+    {
+        name:  "Đi Giữa Trời Rực Rỡ ",
+        artist: "Tùng M-P3",
+        img:"music-13",
+        src:"music-13"
     }
+    
 
 //     name:  "Trời Giấu Trời Mang Đi",
 //     artist:"Trịnh Xuân Tùng      ",
