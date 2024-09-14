@@ -75,7 +75,20 @@ let allMusic = [{
         artist: "Tùng M-P3",
         img:"music-13",
         src:"music-13"
+    },
+    {
+        name:  "Đừng Hỏi Em Ổn Không Remix",
+        artist: "Tùng M-P3",
+        img:"music-14",
+        src:"music-14"
+    },
+    {
+        name:  "Anh chỉ là người dưng",
+        artist: "Tùng M-P3",
+        img:"music-15",
+        src:"music-15"
     }
+
     
 
 //     name:  "Trời Giấu Trời Mang Đi",
